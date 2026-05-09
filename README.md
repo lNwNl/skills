@@ -13,29 +13,48 @@ Agent 技能集，使用 **GitButler** (`but`) 进行版本管理，备份于 Gi
 ### 1. 初始化 GitButler 工作区
 
 ```bash
-# 在当前目录初始化 git 仓库并配置 GitButler
 but setup --init
 ```
 
-`--init` 会自动执行 `git init`（如果还不是 git 仓库），然后建立 GitButler 工作区模型。
+`--init` 自动执行 `git init` 并建立 GitButler 工作区模型。完成后会生成一个空的初始提交和 GitButler 工作区提交，**但所有文件仍在「未分配更改」(unassigned changes) 状态**。
 
-### 2. 创建 GitHub 远程仓库并推送
+### 2. 首次提交
 
 ```bash
-# 方法 A: 使用 gh CLI（一步完成创建 + 推送）
-gh repo create skills --public --source=. --remote=origin --push
+# 查看状态，确认所有文件都在 zz (unassigned)
+but status -fv
 
-# 方法 B: 手动创建
-#   1. 在 GitHub 网页新建仓库 (如 skills)
-#   2. 关联远程并推送:
-git remote add origin git@github.com:lNwNl/skills.git
-but push
+# 将所有未分配更改提交到虚拟分支（不加 --changes 表示提交该分支全部更改）
+but commit <分支名> -m "init: add skills" --status-after
 ```
 
-### 3. 配置 GitButler 远程认证（可选，用于 PR）
+### 3. 创建 GitHub 仓库并设置远程
 
 ```bash
-# 配置 Forge 认证，用于 but pr 命令
+# 方法 A: gh CLI 创建仓库
+gh repo create skills --public --source=. --remote=origin
+# 注意: 不要加 --push，此时先创建仓库，后续手动推送
+
+# 方法 B: 手动创建
+#   1. 在 GitHub 网页新建仓库
+#   2. 关联远程:
+git remote add origin git@github.com:<用户名>/skills.git
+```
+
+### 4. 推送到 GitHub
+
+```bash
+# 首次推送直接用 git push 最可靠
+git push -u origin <分支名>:main
+
+# -u 会同时设置上游追踪，后续可直接用 but push
+```
+
+> **注意**: `gh repo create --push` 会尝试推送，但由于 `but setup --init` 只创建了空提交，文件尚未提交，所以 GitHub 上会是一个空仓库。正确顺序是：`but setup --init` → `but commit` → `git push`。
+
+### 5. 配置 GitButler 远程认证（可选，用于 PR）
+
+```bash
 but config forge auth
 ```
 
