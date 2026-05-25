@@ -6,16 +6,7 @@
 
 ```
 
-### 我的mcp、skills保存路径
-
-wsl kali linux中
-
-```
-~/.agents/skills
-~/.config/opencode/
-```
-
-## My Skills
+## 自建 Skills
 
 ### agent-concepts-\*
 
