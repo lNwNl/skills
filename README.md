@@ -15,6 +15,30 @@ wsl kali linux中
 ~/.config/opencode/
 ```
 
+## My Skills
+
+### agent-concepts-\*
+
+Agent protocol 概念系列 — MCP、A2A、AGENTS.md、Agent Skills、三层协议栈架构。从工具层到协调层到应用层，覆盖 AI Agent 标准生态。
+
+### cybernetics-thinking
+
+控制论系统思维 — 诊断系统不稳定、分析反馈循环与涌现行为、逆向工程黑盒。适用于复杂系统故障排查与自适应架构设计。
+
+### deepseek-brand-guidelines
+
+DeepSeek 官方品牌视觉规范 — 色彩系统与视觉标识。确保 DeepSeek 相关产物品牌一致性。
+
+### opencode-investigation
+
+OpenCode Agent 执行记录调查 — 追踪 tool call 详情、排查 Agent 行为异常、分析输出缺失与超时原因。
+
+### research-beyond-knowledge
+
+引导 Agent 突破训练数据截止边界，发现新兴概念与技术。适用于技术全景调研与未知领域探索。
+
+---
+
 ### [GitButler MCP Server](https://docs.gitbutler.com/features/ai-integration/mcp-server)
 
 此项目作为模型上下文协议（MCP）服务器，赋予 AI Agent 直接读写 Git 仓库、管理分支及执行版本控制操作的标准化接口，使其能够自主完成代码提交与代码审查任务。
